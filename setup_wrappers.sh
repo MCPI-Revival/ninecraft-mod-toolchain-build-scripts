@@ -2,7 +2,7 @@
 
 mkdir -p bin
 
-for tool in ./toolchain/bin/*; do
+for tool in "./toolchain-$2/bin"/*; do
   base=$(basename "$tool")
   cat > "./bin/$base" <<EOF
 #!/bin/sh
