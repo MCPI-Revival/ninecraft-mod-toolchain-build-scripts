@@ -2,11 +2,6 @@ name: Build Cross-Compiler Toolchain
 
 on:
   workflow_dispatch:
-    inputs:
-      architecture:
-        description: 'Target architecture (e.g., arm, x86, mips)'
-        required: true
-        default: 'arm'
 
 jobs:
   build-toolchain:
@@ -34,12 +29,17 @@ jobs:
 
     - name: Run build script
       run: |
+        chmod +x ./build-all.sh
         chmod +x ./build.sh
         chmod +x ./setup_wrappers.sh
-        ./build.sh ${{ github.event.inputs.architecture }}
+        ./build-all.sh
 
     - name: Upload everything as artifact
       uses: actions/upload-artifact@v4
       with:
         name: full-build-output
-        path: .
+        path: |
+          toolchain-arm-linux-androideabi/
+          toolchain-i686-linux-android/
+          toolchain-mips-linux-android/
+          bin/
