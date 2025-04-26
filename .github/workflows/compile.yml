@@ -1,0 +1,45 @@
+name: Build Cross-Compiler Toolchain
+
+on:
+  workflow_dispatch:
+    inputs:
+      architecture:
+        description: 'Target architecture (e.g., arm, x86, mips)'
+        required: true
+        default: 'arm'
+
+jobs:
+  build-toolchain:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          wget \
+          tar \
+          build-essential \
+          gcc \
+          g++ \
+          make \
+          gmp \
+          mpfr \
+          libmpc-dev \
+          texinfo \
+          zlib1g-dev
+
+    - name: Run build script
+      run: |
+        chmod +x ./build.sh
+        chmod +x ./setup_wrappers.sh
+        ./build.sh ${{ github.event.inputs.architecture }}
+
+    - name: Upload everything as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: full-build-output
+        path: .
