@@ -1,4 +1,4 @@
-# gcc-android-build-scripts
+# ninecraft-mod-toolchain-build-scripts
 
 ## install dependencies
 ```
