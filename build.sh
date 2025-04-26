@@ -16,7 +16,7 @@ elif [ "$1" = "x86" ]; then
 elif [ "$1" = "mips" ]; then
     CROSS_TARGET="mips-linux-android"
     CROSS_SYSROOT="arch-mips"
-    EXTRA_GCC_CONFIG="--with-arch=mips32 --with-abi=32 --with-float=softfp --with-tune=mips32"
+    EXTRA_GCC_CONFIG="--with-arch=mips32 --with-abi=o32 --with-float=hard --with-tune=mips32"
 else
     echo "Unknown architecture"
     exit 1
