@@ -36,10 +36,10 @@ if [ ! -d "gcc-$CHOSEN_GCC_VERSION" ]; then
 fi
 
 mkdir -p toolchain-$CROSS_TARGET
-mkdir -p build-binutils-$CHOSEN_BINUTILS_VERSION
-mkdir -p build-gcc-$CHOSEN_GCC_VERSION
+mkdir -p build-binutils-$CHOSEN_BINUTILS_VERSION-$CROSS_TARGET
+mkdir -p build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
 
-cd build-binutils-$CHOSEN_BINUTILS_VERSION
+cd build-binutils-$CHOSEN_BINUTILS_VERSION-$CROSS_TARGET
 
 ../binutils-$CHOSEN_BINUTILS_VERSION/configure \
     --target=$CROSS_TARGET \
@@ -52,7 +52,7 @@ cd build-binutils-$CHOSEN_BINUTILS_VERSION
 make -j$(nproc)
 make install
 
-cd ../build-gcc-$CHOSEN_GCC_VERSION
+cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
 
 ../gcc-$CHOSEN_GCC_VERSION/configure \
     --target=$CROSS_TARGET \
