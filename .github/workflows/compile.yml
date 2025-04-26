@@ -1,4 +1,4 @@
-name: Build Cross-Compiler Toolchain
+name: Build Toolchain
 
 on:
   workflow_dispatch:
@@ -29,19 +29,20 @@ jobs:
         chmod +x ./build.sh
         chmod +x ./setup_wrappers.sh
 
-    - name: Build arm toolchain
+    - name: Build ARM Toolchain
       run: |
         ./build.sh arm
         
-    - name: Build x86 toolchain
+    - name: Build X86 Toolchain
       run: |
         ./build.sh x86
+        
+    - name: Create Tarball
+      run: |
+        tar -czvf toolchain.tar.gz toolchain-arm-linux-androideabi toolchain-i686-linux-android bin
 
-    - name: Upload everything as artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: full-build-output
-        path: |
-          toolchain-arm-linux-androideabi/
-          toolchain-i686-linux-android/
-          bin/
+        name: toolchain
+        path: toolchain.tar.gz
