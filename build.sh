@@ -20,7 +20,7 @@ elif [ "$1" = "mips" ]; then
     CROSS_SYSROOT="arch-mips"
     EXTRA_GCC_CONFIG="--with-arch=mips32 --with-abi=32 --with-float=hard --with-tune=mips32"
 else
-    echo "Unknown architecture"
+    echo "Unknown architecture, please use one of the following ones instead: arm, x86, mips"
     exit 1
 fi
 
