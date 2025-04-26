@@ -7,4 +7,4 @@ sudo apt-get install -y wget tar build-essential gcc g++ make libgmp-dev libmpfr
 ```
 
 ## compile
-./build-all.sh
+`./build-all.sh`
