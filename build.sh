@@ -71,7 +71,6 @@ cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
     --enable-lto \
     --disable-shared \
     --enable-static \
-    --with-newlib \
     --enable-threads \
     --disable-doc \
     --disable-libsanitizer \
