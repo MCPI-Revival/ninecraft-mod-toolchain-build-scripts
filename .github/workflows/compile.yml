@@ -24,7 +24,9 @@ jobs:
           libmpfr-dev \
           libmpc-dev \
           texinfo \
-          zlib1g-dev
+          zlib1g-dev \
+          libc6-dev \
+          libiconv-hook-dev
         chmod +x ./build.sh
         chmod +x ./setup_wrappers.sh
 
