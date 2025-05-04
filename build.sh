@@ -52,7 +52,7 @@ cd build-binutils-$CHOSEN_BINUTILS_VERSION-$CROSS_TARGET
     --disable-doc \
     LDFLAGS="-static"
 
-make -j$(nproc)
+make -j$(nproc) LDFLAGS="-static"
 make install
 
 cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
@@ -74,9 +74,10 @@ cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
     --enable-threads \
     --disable-doc \
     --disable-libsanitizer \
-    $EXTRA_GCC_CONFIG
+    $EXTRA_GCC_CONFIG \
+    LDFLAGS="-static"
 
-make -j$(nproc)
+make -j$(nproc) LDFLAGS="-static"
 make install
 
 cd ..
