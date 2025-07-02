@@ -49,10 +49,9 @@ cd build-binutils-$CHOSEN_BINUTILS_VERSION-$CROSS_TARGET
     --with-sysroot="$(pwd)/../sysroot/$CROSS_SYSROOT" \
     --disable-nls \
     --disable-werror \
-    --disable-doc \
-    LDFLAGS="-static"
+    --disable-doc
 
-make -j$(nproc) LDFLAGS="-static"
+make -j$(nproc)
 make install
 
 cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
@@ -69,15 +68,13 @@ cd ../build-gcc-$CHOSEN_GCC_VERSION-$CROSS_TARGET
     --disable-libgomp \
     --disable-libmudflap \
     --enable-lto \
-    --disable-shared \
-    --enable-static \
+    --enable-shared \
     --enable-threads \
     --disable-doc \
     --disable-libsanitizer \
-    $EXTRA_GCC_CONFIG \
-    LDFLAGS="-static"
+    $EXTRA_GCC_CONFIG
 
-make -j$(nproc) LDFLAGS="-static"
+make -j$(nproc)
 make install
 
 cd ..
